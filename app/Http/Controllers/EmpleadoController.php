@@ -31,10 +31,10 @@ class EmpleadoController extends Controller
     {
         // 1. Validación de datos
         $validatedData = $request->validate([
-            'primer_apellido' => ['required', 'string', 'max:50', 'regex:/^[A-ZÁÉÍÓÚÑ\s]+$/'],
-            'segundo_apellido' => ['required', 'string', 'max:50', 'regex:/^[A-ZÁÉÍÓÚÑ\s]+$/'],
-            'primer_nombre' => ['required', 'string', 'max:20', 'regex:/^[A-ZÁÉÍÓÚÑ\s]+$/'],
-            'otros_nombres' => ['nullable', 'string', 'max:50', 'regex:/^[A-ZÁÉÍÓÚÑ\s]*$/'],
+            'primer_apellido' => ['required', 'string', 'max:20', 'regex:/^[A-Z]+$/'],
+            'segundo_apellido' => ['required', 'string', 'max:50', 'regex:/^[A-Z]+$/'],
+            'primer_nombre' => ['required', 'string', 'max:20', 'regex:/^[A-Z]+$/'],
+            'otros_nombres' => ['nullable', 'string', 'max:50', 'regex:/^[A-Z]+$/'],
             'pais_empleo' => 'required|in:Colombia,Estados Unidos',
             'tipo_identificacion' => ['required', 'string', 'max:50'],
             'numero_identificacion' => ['required', 'string', 'max:20', 'unique:empleados,numero_identificacion'],

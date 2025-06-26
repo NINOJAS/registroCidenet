@@ -2,22 +2,24 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro Empleados - Cidenet</title>
+    <title>Cidenet</title>
+    <link rel="icon" href="/img/cidenet.jpg" type="image/x-icon">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
     <div class="max-w-6xl mx-auto" x-data="empleadoApp()" x-init="init()">
-        <h1 class="text-3xl font-bold mb-6 text-center text-blue-800">Registro de Empleados - Cidenet</h1>
+        <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Registro de Empleados - Cidenet</h1>
 
-        <button @click="modal = true" class="bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded-md mb-4">
+        <button @click="modal = true" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md mb-4">
             Registrar Empleado
         </button>
 
         <!-- Modal -->
         <template x-if="modal">
-            <div class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+            <div class="fixed inset-0 bg-gray-300 bg-opacity-75 flex justify-center items-center z-50">
                 <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl overflow-y-auto max-h-screen">
                     <h2 class="text-xl font-semibold mb-4 text-blue-700">Nuevo Empleado</h2>
                     <form @submit.prevent="submitForm" class="space-y-3">
@@ -133,10 +135,10 @@
 
                         <!-- Botones -->
                         <div class="flex justify-end space-x-2 pt-2">
-                            <button type="button" @click="modal = false" class="text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md">
+                            <button type="button" @click="modal = false" class="bg-gray-400 text-gray-900 hover:bg-gray-300 px-3 py-2 rounded-md">
                                 Cancelar
                             </button>
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md">
                                 Guardar
                             </button>
                         </div>
@@ -220,6 +222,18 @@
                             this.empleados.push(data);
                             this.modal = false;
                             this.resetForm();
+                            
+                                Swal.fire({
+                            icon: 'success',
+                            title: '¡Registro exitoso!',
+                            html: '<b>El empleado fue guardado correctamente.</b>',
+                            background: '#f0f9ff',
+                            color: '#1e3a8a',
+                            confirmButtonColor: '#2563eb',
+                            timer: 2500,
+                            showConfirmButton: false
+                    });
+        
                         }
                     })
                     .catch(e => console.error("Error al registrar", e));
